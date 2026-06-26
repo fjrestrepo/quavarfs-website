@@ -1,0 +1,643 @@
+---
+import InteriorLayout from '../layouts/InteriorLayout.astro';
+import CTA from '../components/CTA.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import SplitSection from '../components/SplitSection.astro';
+
+const pageTitle = 'Services | QUAVAR Facility Services';
+const pageDescription =
+  'Corporate facility service capabilities designed for professional, healthcare, commercial and high-performance environments.';
+
+const primaryServices = [
+  {
+    number: '01',
+    eyebrow: 'Primary Service',
+    title: 'Commercial Cleaning',
+    description:
+      'Structured cleaning programs for offices, corporate spaces and professional environments requiring consistency, discretion and measurable service standards.',
+    image: '/img/services/commercial-cleaning.webp',
+    alt: 'Modern commercial environment maintained to a professional operational standard',
+    href: '/contact',
+  },
+  {
+    number: '02',
+    eyebrow: 'Primary Service',
+    title: 'Healthcare Environments',
+    description:
+      'Controlled cleaning support for medical offices, clinics and healthcare-adjacent facilities where trust, process and attention to detail are essential.',
+    image: '/img/services/healthcare-corridor.webp',
+    alt: 'Modern healthcare corridor representing controlled professional environments',
+    href: '/contact',
+  },
+  {
+    number: '03',
+    eyebrow: 'Primary Service',
+    title: 'Floor Care',
+    description:
+      'Maintenance programs for resilient and hard-surface flooring, designed to preserve appearance, extend asset life and support facility presentation.',
+    image: '/img/services/floor-care.webp',
+    alt: 'Professional floor surface in a premium commercial environment',
+    href: '/contact',
+  },
+];
+
+const specializedServices = [
+  {
+    number: '04',
+    eyebrow: 'Specialized Service',
+    title: 'Carpet Care',
+    description:
+      'Periodic and restorative carpet care programs that support indoor appearance, cleanliness and long-term material performance.',
+    image: '/img/services/carpet-care.webp',
+    alt: 'Premium commercial carpet care in a professional facility environment',
+  },
+  {
+    number: '05',
+    eyebrow: 'Specialized Service',
+    title: 'Post Construction',
+    description:
+      'Detailed final-stage cleaning for newly built, renovated or improved spaces preparing to transition from construction activity to professional use.',
+    image: '/img/services/post-construction.webp',
+    alt: 'Modern facility after construction prepared for professional use',
+  },
+  {
+    number: '06',
+    eyebrow: 'Specialized Service',
+    title: 'Specialty Services',
+    description:
+      'Targeted support for facility needs that require planning, coordination and disciplined execution beyond daily maintenance.',
+    image: '/img/services/specialty-services.webp',
+    alt: 'Facility services detail representing specialized operational support',
+  },
+];
+
+const operatingPrinciples = [
+  {
+    number: '01',
+    title: 'Operational Reliability',
+    description:
+      'Programs are structured to support business continuity and reduce avoidable disruption across daily facility operations.',
+  },
+  {
+    number: '02',
+    title: 'Quality Assurance',
+    description:
+      'Defined routines, supervision and communication help maintain service consistency across spaces, schedules and priorities.',
+  },
+  {
+    number: '03',
+    title: 'Scalable Programs',
+    description:
+      'Service models are designed to adapt as facility needs, occupancy patterns and operational requirements evolve.',
+  },
+  {
+    number: '04',
+    title: 'Professional Communication',
+    description:
+      'Clear coordination and responsive account support create alignment between facility expectations and field execution.',
+  },
+];
+
+const deliverySteps = [
+  {
+    number: '01',
+    title: 'Discover',
+    description:
+      'Facility conditions, service priorities and operating requirements are reviewed before the program is structured.',
+  },
+  {
+    number: '02',
+    title: 'Design',
+    description:
+      'Scope, frequency, staffing, access and performance expectations are organized into a clear service framework.',
+  },
+  {
+    number: '03',
+    title: 'Deliver',
+    description:
+      'Work is performed through trained professionals, defined routines and disciplined field coordination.',
+  },
+  {
+    number: '04',
+    title: 'Measure',
+    description:
+      'Service standards are reinforced through supervision, communication and periodic performance review.',
+  },
+  {
+    number: '05',
+    title: 'Optimize',
+    description:
+      'Programs are refined over time to support changing facility needs, operational feedback and long-term consistency.',
+    wide: true,
+  },
+];
+---
+
+<InteriorLayout title={pageTitle} description={pageDescription}>
+  <main class="services-page">
+    <section class="services-hero" aria-labelledby="services-hero-title">
+      <div class="container services-hero__container">
+        <p class="eyebrow">Services</p>
+
+        <div class="services-hero__grid">
+          <h1 id="services-hero-title">Capabilities for professional environments.</h1>
+
+          <p>
+            QUAVAR delivers facility service programs designed to protect assets,
+            support operations and elevate the environments where people work,
+            learn, heal and gather.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-image-band" aria-label="Professional facility environment">
+      <div class="container">
+        <img
+          src="/img/architecture/modern-atrium.webp"
+          alt="Modern professional facility interior maintained to a high operational standard"
+          loading="lazy"
+          decoding="async"
+          width="1536"
+          height="1024"
+        />
+      </div>
+    </section>
+
+    <section class="services-positioning section-tight" aria-labelledby="facility-services-title">
+      <div class="container services-positioning__grid">
+        <p class="section-label">Facility Services</p>
+
+        <div class="services-positioning__content">
+          <h2 id="facility-services-title">Built to support the way facilities operate.</h2>
+          <p>
+            Facility service is not only about appearance. It is about continuity,
+            reliability, occupant experience, asset protection and the disciplined
+            execution required to keep professional environments performing at a
+            consistently high standard.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-capabilities section" aria-labelledby="primary-services-title">
+      <div class="container">
+        <SectionHeader
+          eyebrow="Core Capabilities"
+          title="Primary service programs."
+          description="Service programs designed to support professional environments with consistent standards, defined routines and reliable execution."
+          id="primary-services-title"
+          size="large"
+        />
+
+        <div class="services-card-grid services-card-grid--primary">
+          {primaryServices.map((service) => (
+            <FeatureCard
+              number={service.number}
+              eyebrow={service.eyebrow}
+              title={service.title}
+              description={service.description}
+              image={service.image}
+              alt={service.alt}
+              href={service.href}
+              linkLabel="Request Details"
+              variant="image"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="services-specialized section-tight" aria-labelledby="specialized-services-title">
+      <div class="container">
+        <SectionHeader
+          eyebrow="Specialized Capabilities"
+          title="Targeted support for defined facility needs."
+          description="Specialized programs extend the core service model into periodic, technical and project-based requirements."
+          id="specialized-services-title"
+          size="standard"
+        />
+
+        <div class="services-card-grid services-card-grid--secondary">
+          {specializedServices.map((service) => (
+            <FeatureCard
+              number={service.number}
+              eyebrow={service.eyebrow}
+              title={service.title}
+              description={service.description}
+              image={service.image}
+              alt={service.alt}
+              href="/contact/#reach-quavar"
+              linkLabel="Request Details"
+              variant="image"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="services-principles section" aria-labelledby="why-quavar-title">
+      <div class="container services-principles__layout">
+        <div class="services-principles__media" aria-label="Modern corporate facility detail">
+          <img
+            src="/img/operations/hall-team.webp"
+            alt="Facility services professional reviewing operational details on a tablet"
+            loading="lazy"
+            decoding="async"
+            width="1536"
+            height="1024"
+          />
+        </div>
+
+        <div class="services-principles__content">
+          <SectionHeader
+            eyebrow="Why QUAVAR"
+            title="Disciplined service for environments where standards matter."
+            id="why-quavar-title"
+            size="large"
+          />
+
+          <div class="services-principles__grid">
+            {operatingPrinciples.map((principle) => (
+              <FeatureCard
+                number={principle.number}
+                title={principle.title}
+                description={principle.description}
+                variant="compact"
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-statement section-large" aria-label="QUAVAR service philosophy statement">
+      <div class="container services-statement__grid">
+        <p class="section-label">Service Philosophy</p>
+
+        <blockquote>
+          Exceptional environments begin with disciplined execution, thoughtful
+          planning and a service culture built around accountability.
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="services-delivery section" aria-labelledby="delivery-system-title">
+      <div class="container services-delivery__layout">
+        <div class="services-delivery__intro">
+          <SectionHeader
+            eyebrow="Delivery System"
+            title="Standardized execution. Measurable outcomes."
+            description="Every program is structured through a disciplined operating sequence designed to create clarity before work begins and consistency after service is underway."
+            id="delivery-system-title"
+            theme="dark"
+            size="large"
+          />
+        </div>
+
+        <div class="services-delivery__panel">
+          {deliverySteps.map((step) => (
+            <article class={`services-delivery__step ${step.wide ? 'services-delivery__step--wide' : ''}`}>
+              <span>{step.number}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <SplitSection
+      eyebrow="Program Alignment"
+      title="Every facility has a different operating standard."
+      description="QUAVAR builds service programs around the realities of each environment: access, traffic, risk, finishes, occupancy patterns, schedule sensitivity and the expectations of the people who use the space every day."
+      image="/img/architecture/corporate-lobby.webp"
+      alt="Premium corporate lobby representing a professional facility environment"
+      imagePosition="right"
+      theme="light"
+      actions={[
+        { label: 'Discuss Your Facility', href: '/contact', variant: 'primary' },
+        { label: 'View Industries', href: '/industries', variant: 'secondary' },
+      ]}
+    />
+
+    <CTA
+      id="services-contact"
+      eyebrow="Next Step"
+      title="Facility programs built around your environment."
+      description="Every facility is different. Every operational standard is different. Our role is to build a service program aligned with yours."
+      primaryLabel="Request a Proposal"
+      primaryHref="/contact"
+      secondaryLabel="Contact QUAVAR"
+      secondaryHref="/contact"
+    />
+  </main>
+</InteriorLayout>
+
+<style>
+  .services-page {
+    width: 100%;
+    background: var(--color-white);
+    color: var(--color-navy);
+  }
+
+  .services-hero {
+    padding: 120px 0 72px;
+  }
+
+  .services-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+    gap: 96px;
+    align-items: end;
+  }
+
+  .services-hero h1 {
+    max-width: 760px;
+    margin: 0;
+    font-size: clamp(3.25rem, 7vw, 6.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.06em;
+  }
+
+  .services-hero p:not(.eyebrow) {
+    max-width: 500px;
+    margin: 0;
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: var(--color-slate);
+  }
+
+  .services-image-band img {
+    width: 100%;
+    height: min(58vw, 620px);
+    object-fit: cover;
+  }
+
+  .services-positioning {
+    padding-top: 112px;
+    padding-bottom: 40px;
+  }
+
+  .services-positioning__grid,
+  .services-statement__grid {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 96px;
+    align-items: start;
+  }
+
+  .services-positioning__content h2 {
+    max-width: 860px;
+    margin: 0;
+    font-size: clamp(2.35rem, 4.8vw, 4.75rem);
+    line-height: 1.03;
+    letter-spacing: -0.055em;
+  }
+
+  .services-positioning__content p {
+    max-width: 720px;
+    margin-top: 32px;
+    font-size: 1.08rem;
+    line-height: 1.75;
+  }
+
+  .services-capabilities {
+    padding-bottom: 72px;
+  }
+
+  .services-specialized {
+    padding-top: 40px;
+    padding-bottom: 128px;
+  }
+
+  .services-card-grid {
+    display: grid;
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .services-card-grid--primary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .services-card-grid--secondary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .services-principles {
+    background: var(--color-off-white);
+  }
+
+  .services-principles__layout {
+    display: grid;
+    grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr);
+    gap: 96px;
+    align-items: start;
+  }
+
+  .services-principles__media {
+    position: sticky;
+    top: 96px;
+    overflow: hidden;
+    background: var(--color-light-gray);
+  }
+
+  .services-principles__media img {
+    width: 100%;
+    height: 680px;
+    object-fit: cover;
+    object-position: 10% center;
+  }
+
+  .services-principles__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    margin-top: 64px;
+    background: var(--color-border);
+    border: 1px solid var(--color-border);
+  }
+
+  .services-principles__grid :global(.qv-feature-card) {
+    border: 0;
+  }
+
+  .services-statement {
+    background: var(--color-white);
+  }
+
+  .services-statement blockquote {
+    max-width: 900px;
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(2.6rem, 5.5vw, 5.4rem);
+    font-weight: 600;
+    line-height: 1.02;
+    letter-spacing: -0.06em;
+    color: var(--color-navy);
+  }
+
+  .services-delivery {
+    background: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  .services-delivery__layout {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 96px;
+    align-items: start;
+  }
+
+  .services-delivery__panel {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid rgba(230, 232, 235, 0.26);
+    border-left: 1px solid rgba(230, 232, 235, 0.26);
+  }
+
+  .services-delivery__step {
+    min-height: 250px;
+    padding: 32px;
+    border-right: 1px solid rgba(230, 232, 235, 0.26);
+    border-bottom: 1px solid rgba(230, 232, 235, 0.26);
+  }
+
+  .services-delivery__step--wide {
+    grid-column: span 2;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 56px 64px;
+  }
+
+  .services-delivery__step span {
+    display: block;
+    margin-bottom: 56px;
+    color: var(--color-teal);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1.4;
+  }
+
+  .services-delivery__step h3 {
+    margin: 0 0 16px;
+    color: var(--color-white);
+    font-size: 1.45rem;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+
+  .services-delivery__step p {
+    max-width: 360px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.96rem;
+    line-height: 1.65;
+  }
+
+  .services-delivery__step--wide h3 {
+    font-size: 1.75rem;
+  }
+
+  .services-delivery__step--wide p {
+    max-width: 620px;
+  }
+
+  @media (max-width: 1080px) {
+    .services-card-grid--primary,
+    .services-card-grid--secondary {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .services-principles__layout {
+      grid-template-columns: 1fr;
+      gap: 64px;
+    }
+
+    .services-principles__media {
+      position: static;
+    }
+
+    .services-principles__media img {
+      height: 520px;
+    }
+  }
+
+  @media (max-width: 980px) {
+    .services-positioning__grid,
+    .services-statement__grid,
+    .services-delivery__layout {
+      grid-template-columns: 1fr;
+      gap: 64px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .services-hero {
+      padding: 96px 0 56px;
+    }
+
+    .services-hero__grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .services-image-band img {
+      height: 420px;
+    }
+
+    .services-positioning {
+      padding-top: 88px;
+      padding-bottom: 32px;
+    }
+
+    .services-capabilities {
+      padding-bottom: 56px;
+    }
+
+    .services-specialized {
+      padding-top: 24px;
+      padding-bottom: 104px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .services-card-grid--primary,
+    .services-card-grid--secondary,
+    .services-principles__grid,
+    .services-delivery__panel {
+      grid-template-columns: 1fr;
+    }
+
+    .services-delivery__step,
+    .services-delivery__step--wide {
+      grid-column: auto;
+      min-height: auto;
+      padding: 32px 24px;
+    }
+
+    .services-delivery__step span {
+      margin-bottom: 40px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .services-hero {
+      padding: 80px 0 48px;
+    }
+
+    .services-image-band img,
+    .services-principles__media img {
+      height: 320px;
+    }
+
+    .services-card-grid {
+      margin-top: 40px;
+    }
+  }
+</style>

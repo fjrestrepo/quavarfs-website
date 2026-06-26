@@ -1,7 +1,17 @@
 ---
 import "../styles/global.css";
 
-const { title = "QUAVAR Facility Services" } = Astro.props;
+const {
+  title = "QUAVAR Facility Services",
+  description = "Facility services for professional, high-performance environments.",
+  image = "/img/hero/quavar-hero-lobby.webp",
+  type = "website",
+} = Astro.props;
+
+const siteUrl = Astro.site ?? new URL("https://quavarfs.com");
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const ogImageUrl = new URL(image, siteUrl).toString();
+const siteName = "QUAVAR Facility Services";
 ---
 
 <!doctype html>
@@ -9,8 +19,41 @@ const { title = "QUAVAR Facility Services" } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#001E3D" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content="QUAVAR Facility Services — Building Better Environments." />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <title>{title}</title>
-    <link rel="icon" href="/favicon.ico" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
   </head>
 
   <body>

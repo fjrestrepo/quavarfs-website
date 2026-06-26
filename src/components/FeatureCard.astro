@@ -1,0 +1,289 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  image?: string;
+  alt?: string;
+  href?: string;
+  linkLabel?: string;
+  number?: string;
+  variant?: 'image' | 'panel' | 'compact';
+  dark?: boolean;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  image,
+  alt = '',
+  href,
+  linkLabel = 'Learn More',
+  number,
+  variant = 'image',
+  dark = false,
+} = Astro.props;
+
+const Tag = href ? 'a' : 'article';
+const classes = [
+  'qv-feature-card',
+  `qv-feature-card--${variant}`,
+  dark ? 'qv-feature-card--dark' : '',
+  href ? 'qv-feature-card--interactive' : '',
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<Tag class={classes} href={href} aria-label={href ? `${linkLabel}: ${title}` : undefined}>
+  {image && (
+    <div class="qv-feature-card__media" aria-hidden={alt ? undefined : 'true'}>
+      <img src={image} alt={alt} width="1536" height="1024" loading="lazy" decoding="async" />
+    </div>
+  )}
+
+  <div class="qv-feature-card__content">
+    {(number || eyebrow) && (
+      <div class="qv-feature-card__meta">
+        {number && <span class="qv-feature-card__number">{number}</span>}
+        {eyebrow && <span class="qv-feature-card__eyebrow">{eyebrow}</span>}
+      </div>
+    )}
+
+    <h3>{title}</h3>
+
+    {description && <p>{description}</p>}
+
+    {href && (
+      <span class="qv-feature-card__link" aria-hidden="true">
+        {linkLabel}
+      </span>
+    )}
+  </div>
+</Tag>
+
+<style>
+  .qv-feature-card {
+    position: relative;
+    display: flex;
+    min-height: 100%;
+    overflow: hidden;
+    color: inherit;
+    text-decoration: none;
+    isolation: isolate;
+    background: var(--surface-white);
+    border: 1px solid rgba(0, 30, 61, 0.095);
+    box-shadow: 0 1px 0 rgba(0, 30, 61, 0.025);
+    transition:
+      border-color var(--transition-medium),
+      box-shadow var(--transition-medium),
+      transform var(--transition-medium),
+      background var(--transition-medium);
+  }
+
+  .qv-feature-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    z-index: 3;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-teal), rgba(0, 168, 168, 0));
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+  }
+
+  .qv-feature-card--image {
+    min-height: 400px;
+    color: var(--color-white);
+    background: var(--color-navy);
+    border: 0;
+    box-shadow: var(--shadow-card);
+  }
+
+  .qv-feature-card--panel,
+  .qv-feature-card--compact {
+    flex-direction: column;
+  }
+
+  .qv-feature-card--panel {
+    padding: 44px;
+  }
+
+  .qv-feature-card--compact {
+    padding: 34px;
+  }
+
+  .qv-feature-card--dark {
+    color: var(--color-white);
+    background:
+      radial-gradient(circle at 0% 0%, rgba(0, 168, 168, 0.14), transparent 36%),
+      var(--color-navy);
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+
+  .qv-feature-card__media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .qv-feature-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.78;
+    filter: saturate(0.88) contrast(1.02);
+    transition:
+      opacity var(--transition-slow),
+      filter var(--transition-slow),
+      transform var(--transition-slow);
+  }
+
+  .qv-feature-card--image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(180deg, rgba(0, 30, 61, 0.02) 0%, rgba(0, 30, 61, 0.28) 44%, rgba(0, 30, 61, 0.88) 100%),
+      linear-gradient(90deg, rgba(0, 30, 61, 0.38), rgba(0, 30, 61, 0.02));
+    pointer-events: none;
+  }
+
+  .qv-feature-card__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .qv-feature-card--image .qv-feature-card__content {
+    justify-content: flex-end;
+    min-height: 400px;
+    padding: 36px;
+  }
+
+  .qv-feature-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .qv-feature-card__number,
+  .qv-feature-card__eyebrow {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--color-teal);
+  }
+
+  .qv-feature-card__number {
+    letter-spacing: 0.035em;
+    opacity: 0.88;
+  }
+
+  .qv-feature-card h3 {
+    margin: 0;
+    color: var(--color-navy);
+    font-size: clamp(22px, 2vw, 29px);
+    line-height: 1.16;
+    letter-spacing: -0.035em;
+  }
+
+  .qv-feature-card--image h3,
+  .qv-feature-card--dark h3 {
+    color: var(--color-white);
+  }
+
+  .qv-feature-card p {
+    max-width: 38rem;
+    margin: 18px 0 0;
+    color: var(--color-slate);
+    font-size: 16px;
+    line-height: 1.7;
+    text-wrap: pretty;
+  }
+
+  .qv-feature-card--image p,
+  .qv-feature-card--dark p {
+    color: rgba(255, 255, 255, 0.80);
+  }
+
+  .qv-feature-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 30px;
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--color-teal);
+  }
+
+  .qv-feature-card__link::after {
+    content: "";
+    width: 28px;
+    height: 2px;
+    background: currentColor;
+    transition: width var(--transition-medium);
+  }
+
+  .qv-feature-card--interactive:hover {
+    border-color: rgba(0, 168, 168, 0.34);
+    box-shadow: var(--shadow-premium);
+    transform: translateY(-6px);
+  }
+
+  .qv-feature-card--interactive:hover::before {
+    opacity: 1;
+  }
+
+  .qv-feature-card--interactive:hover .qv-feature-card__media img {
+    opacity: 1;
+    filter: saturate(1.03) brightness(1.08) contrast(1.04);
+    transform: scale(1.055);
+  }
+
+  .qv-feature-card--interactive:hover .qv-feature-card__link::after {
+    width: 42px;
+  }
+
+  .qv-feature-card:focus-visible {
+    outline: 3px solid rgba(0, 168, 168, 0.55);
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 640px) {
+    .qv-feature-card--image {
+      min-height: 330px;
+    }
+
+    .qv-feature-card--image .qv-feature-card__content {
+      min-height: 330px;
+      padding: 28px;
+    }
+
+    .qv-feature-card--panel {
+      padding: 30px;
+    }
+
+    .qv-feature-card--compact {
+      padding: 28px;
+    }
+
+    .qv-feature-card p {
+      font-size: 15.5px;
+      line-height: 1.66;
+    }
+  }
+</style>

@@ -1,0 +1,16 @@
+{
+  "name": "QUAVAR Facility Services",
+  "short_name": "QUAVAR",
+  "description": "Building Better Environments.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#001E3D",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

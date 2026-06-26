@@ -1,0 +1,657 @@
+---
+import InteriorLayout from '../layouts/InteriorLayout.astro';
+import CTA from '../components/CTA.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import SplitSection from '../components/SplitSection.astro';
+import MetricBand from '../components/MetricBand.astro';
+
+const pageTitle = 'Industries | QUAVAR Facility Services';
+const pageDescription =
+  'Facility service programs for healthcare, commercial, industrial, education, hospitality and retail environments.';
+
+const industries = [
+  {
+    number: '01',
+    eyebrow: 'Healthcare',
+    title: 'Healthcare Environments',
+    description:
+      'Medical offices, clinics and healthcare-adjacent facilities where controlled routines, trust and attention to detail are essential.',
+    image: '/img/industries/healthcare.webp',
+    alt: 'Modern healthcare facility environment with clean architectural lines',
+  },
+  {
+    number: '02',
+    eyebrow: 'Commercial',
+    title: 'Commercial Properties',
+    description:
+      'Corporate offices and professional buildings that require consistent presentation, reliable scheduling and polished daily standards.',
+    image: '/img/industries/commercial.webp',
+    alt: 'Premium commercial office environment designed for professional occupancy',
+  },
+  {
+    number: '03',
+    eyebrow: 'Industrial',
+    title: 'Industrial Facilities',
+    description:
+      'Operational spaces, support areas and production-adjacent facilities where access, safety and disciplined execution matter.',
+    image: '/img/industries/industrial.webp',
+    alt: 'Modern industrial facility exterior representing operational environments',
+  },
+  {
+    number: '04',
+    eyebrow: 'Education',
+    title: 'Education Facilities',
+    description:
+      'Learning environments with high daily traffic, varied schedules and the need for dependable service routines.',
+    image: '/img/industries/education.webp',
+    alt: 'Contemporary education facility with modern architectural design',
+  },
+  {
+    number: '05',
+    eyebrow: 'Hospitality',
+    title: 'Hospitality Spaces',
+    description:
+      'Guest-facing spaces where appearance, timing and responsiveness influence the experience of the environment.',
+    image: '/img/industries/hospitality.webp',
+    alt: 'Premium hospitality interior designed for guest-facing environments',
+  },
+  {
+    number: '06',
+    eyebrow: 'Retail',
+    title: 'Retail Environments',
+    description:
+      'Customer-facing environments that require brand-level presentation before, during and after operating hours.',
+    image: '/img/industries/retail.webp',
+    alt: 'Modern retail environment requiring consistent brand-level presentation',
+  },
+];
+
+
+const industryMetrics = [
+  {
+    value: '06',
+    label: 'Environment Types',
+    description: 'Healthcare, commercial, industrial, education, hospitality and retail.',
+  },
+  {
+    value: '04',
+    label: 'Operating Priorities',
+    description: 'Continuity, occupant experience, safety awareness and asset preservation.',
+  },
+  {
+    value: '01',
+    label: 'Operating Lens',
+    description: 'Each facility is evaluated through space use, risk profile and service rhythm.',
+  },
+  {
+    value: '100%',
+    label: 'Facility-Centered',
+    description: 'Programs are shaped around the realities of each professional environment.',
+  },
+];
+
+const priorities = [
+  {
+    number: '01',
+    title: 'Operational Continuity',
+    description:
+      'Service schedules and routines are aligned with business operations to reduce disruption and support daily performance.',
+  },
+  {
+    number: '02',
+    title: 'Occupant Experience',
+    description:
+      'Consistent environments help reinforce confidence for employees, visitors, tenants, customers and guests.',
+  },
+  {
+    number: '03',
+    title: 'Safety Awareness',
+    description:
+      'Programs consider access, traffic, surfaces, visibility and facility-specific procedures where standards matter.',
+  },
+  {
+    number: '04',
+    title: 'Asset Preservation',
+    description:
+      'Disciplined maintenance supports the long-term appearance, performance and value of professional environments.',
+  },
+];
+
+const operatingLens = [
+  {
+    number: '01',
+    title: 'Use of Space',
+    description: 'How people move, gather, work, learn, heal or transact inside the facility.',
+  },
+  {
+    number: '02',
+    title: 'Risk Profile',
+    description: 'Where presentation, safety, access, hygiene or asset preservation matter most.',
+  },
+  {
+    number: '03',
+    title: 'Service Rhythm',
+    description: 'When the work should happen and how it should integrate with operations.',
+  },
+  {
+    number: '04',
+    title: 'Quality Standard',
+    description: 'What must be visible, measurable and consistently reinforced over time.',
+  },
+];
+---
+
+<InteriorLayout title={pageTitle} description={pageDescription}>
+  <main class="industries-page">
+    <section class="industries-hero" aria-labelledby="industries-hero-title">
+      <div class="container industries-hero__layout">
+        <div class="industries-hero__content">
+          <p class="eyebrow">Industries</p>
+          <h1 id="industries-hero-title">Facility Services shaped by the environment.</h1>
+        </div>
+
+        <div class="industries-hero__panel" aria-label="Industry operating logic">
+          <p>
+            QUAVAR structures each service program around the facility type, the daily
+            operating rhythm and the standards expected by the people who use the space.
+          </p>
+
+          <div class="industries-hero__metrics" aria-label="Industry sectors served">
+            <span>Healthcare</span>
+            <span>Commercial</span>
+            <span>Industrial</span>
+            <span>Education</span>
+            <span>Hospitality</span>
+            <span>Retail</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="environment-stage" aria-label="Professional environments">
+      <div class="container environment-stage__grid">
+        <figure class="environment-stage__primary">
+          <img
+            src="/img/architecture/modern-atrium.webp"
+            alt="Large modern atrium representing a premium professional facility environment"
+            loading="lazy"
+            decoding="async"
+            width="1536"
+            height="1024"
+          />
+        </figure>
+
+        <div class="environment-stage__secondary" aria-label="Industry environment examples">
+          <figure>
+            <img
+              src="/img/industries/healthcare.webp"
+              alt="Healthcare facility environment with controlled architectural standards"
+              loading="lazy"
+              decoding="async"
+              width="1536"
+              height="1024"
+            />
+          </figure>
+          <figure>
+            <img
+              src="/img/industries/commercial.webp"
+              alt="Commercial property environment with premium corporate finishes"
+              loading="lazy"
+              decoding="async"
+              width="1536"
+              height="1024"
+            />
+          </figure>
+          <figure>
+            <img
+              src="/img/industries/retail.webp"
+              alt="Retail environment requiring brand-level facility presentation"
+              loading="lazy"
+              decoding="async"
+              width="1536"
+              height="1024"
+            />
+          </figure>
+        </div>
+      </div>
+
+      <div class="container environment-stage__caption">
+        <p>Healthcare, commercial, retail and professional environments.</p>
+        <span>BUILDING BETTER ENVIRONMENTS.</span>
+      </div>
+    </section>
+
+    <section class="industries-priorities section" aria-labelledby="industry-priorities-title">
+      <div class="container industries-priorities__layout">
+        <SectionHeader
+          eyebrow="Operational Priorities"
+          title="Every environment operates differently."
+          description="Our programs are designed around operational continuity, occupant experience, safety awareness and asset preservation—not simply around cleaning tasks."
+          id="industry-priorities-title"
+          size="large"
+        />
+
+        <div class="industries-priorities__grid">
+          {priorities.map((priority) => (
+            <FeatureCard
+              number={priority.number}
+              title={priority.title}
+              description={priority.description}
+              variant="compact"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    <MetricBand
+      eyebrow="Industry Intelligence"
+      title="Different spaces require different operating logic."
+      description="QUAVAR aligns service design to the way each environment works: who uses it, when it is active, what risks matter and how the space should perform."
+      variant="dark"
+      items={industryMetrics}
+    />
+
+    <section id="industry-map" class="industry-map section-tight" aria-labelledby="industry-map-title">
+      <div class="container">
+        <SectionHeader
+          eyebrow="Industry Map"
+          title="Different spaces require different operating intelligence."
+          description="QUAVAR adapts service structure, frequency, communication and quality expectations to the way each facility type actually functions."
+          id="industry-map-title"
+          size="large"
+        />
+
+        <div class="industry-map__grid">
+          {industries.map((industry) => (
+            <FeatureCard
+              number={industry.number}
+              eyebrow={industry.eyebrow}
+              title={industry.title}
+              description={industry.description}
+              image={industry.image}
+              alt={industry.alt}
+              href="/contact/#reach-quavar"
+              linkLabel="Discuss This Sector"
+              variant="image"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="operating-lens section" aria-labelledby="operating-lens-title">
+      <div class="container operating-lens__layout">
+        <div class="operating-lens__intro">
+          <SectionHeader
+            eyebrow="Operating Lens"
+            title="We do not apply one generic model to every facility."
+            description="The same service category can behave very differently across a clinic, office tower, school, retail space or industrial facility. QUAVAR evaluates the environment first."
+            id="operating-lens-title"
+            theme="dark"
+            size="large"
+          />
+        </div>
+
+        <div class="operating-lens__sequence" aria-label="Operating lens sequence">
+          {operatingLens.map((item) => (
+            <article>
+              <span>{item.number}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <SplitSection
+      eyebrow="Program Fit"
+      title="Built for professional and high-performance environments."
+      description="QUAVAR is designed for organizations that need more than task completion. We support facilities where service quality influences confidence, continuity, appearance and the daily experience of the people inside the space."
+      image="/img/architecture/corporate-lobby.webp"
+      alt="Premium corporate lobby representing a high-performance professional environment"
+      imagePosition="left"
+      theme="light"
+      actions={[
+        { label: 'View Services', href: '/services', variant: 'primary' },
+        { label: 'Contact QUAVAR', href: '/contact/#reach-quavar', variant: 'secondary' },
+      ]}
+    />
+
+    <CTA
+      id="industries-contact"
+      eyebrow="Next Step"
+      title="Tell us about your facility type."
+      description="QUAVAR can help define a service program aligned with your industry, operating priorities and expected standards."
+      primaryLabel="Request a Proposal"
+      primaryHref="/contact/#reach-quavar"
+      secondaryLabel="View Services"
+      secondaryHref="/services"
+    />
+  </main>
+</InteriorLayout>
+
+<style>
+  .industries-page {
+    width: 100%;
+    overflow: hidden;
+    background: var(--color-white);
+    color: var(--color-navy);
+  }
+
+  .industries-hero {
+    padding: 132px 0 88px;
+    background: var(--color-white);
+  }
+
+  .industries-hero__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 112px;
+    align-items: end;
+  }
+
+  .industries-hero h1 {
+    max-width: 920px;
+    margin: 0;
+    font-size: clamp(3.5rem, 8vw, 7.5rem);
+    line-height: 0.94;
+    letter-spacing: -0.065em;
+  }
+
+  .industries-hero__panel {
+    padding-top: 32px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .industries-hero__panel p {
+    margin: 0 0 40px;
+    font-size: 1.04rem;
+    line-height: 1.72;
+    color: var(--color-slate);
+  }
+
+  .industries-hero__metrics {
+    display: grid;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .industries-hero__metrics span {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-navy);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .environment-stage {
+    position: relative;
+    padding: 24px 0 0;
+    background: var(--color-navy);
+  }
+
+  .environment-stage__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.42fr) minmax(300px, 0.58fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .environment-stage figure {
+    position: relative;
+    min-height: 0;
+    margin: 0;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .environment-stage figure::after {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0, 30, 61, 0.02), rgba(0, 30, 61, 0.28)),
+      linear-gradient(90deg, rgba(0, 168, 168, 0.08), rgba(0, 168, 168, 0));
+    content: '';
+    pointer-events: none;
+  }
+
+  .environment-stage__primary {
+    height: min(58vw, 720px);
+    min-height: 540px;
+  }
+
+  .environment-stage__secondary {
+    display: grid;
+    gap: 24px;
+  }
+
+  .environment-stage__secondary figure {
+    min-height: 0;
+  }
+
+  .environment-stage img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.9) contrast(1.02);
+  }
+
+  .environment-stage__caption {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 22px 0 24px;
+  }
+
+  .environment-stage__caption p,
+  .environment-stage__caption span {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .environment-stage__caption p {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .environment-stage__caption span {
+    color: var(--color-teal);
+    text-align: right;
+  }
+
+  .industries-priorities {
+    background: var(--color-white);
+  }
+
+  .industries-priorities__layout {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
+    gap: 96px;
+    align-items: start;
+  }
+
+  .industries-priorities__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--color-border);
+    border: 1px solid var(--color-border);
+  }
+
+  .industries-priorities__grid :global(.qv-feature-card) {
+    border: 0;
+  }
+
+  .industry-map {
+    background: var(--color-off-white);
+  }
+
+  .industry-map__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 64px;
+  }
+
+  .operating-lens {
+    background: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  .operating-lens__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.05fr);
+    gap: 104px;
+    align-items: start;
+  }
+
+  .operating-lens__sequence {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid rgba(230, 232, 235, 0.24);
+    border-left: 1px solid rgba(230, 232, 235, 0.24);
+  }
+
+  .operating-lens__sequence article {
+    min-height: 270px;
+    padding: 32px;
+    border-right: 1px solid rgba(230, 232, 235, 0.24);
+    border-bottom: 1px solid rgba(230, 232, 235, 0.24);
+  }
+
+  .operating-lens__sequence span {
+    display: block;
+    margin-bottom: 72px;
+    color: var(--color-teal);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1.4;
+  }
+
+  .operating-lens__sequence h3 {
+    margin: 0 0 16px;
+    color: var(--color-white);
+    font-size: 1.35rem;
+    line-height: 1.18;
+    letter-spacing: -0.025em;
+  }
+
+  .operating-lens__sequence p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.95rem;
+    line-height: 1.62;
+  }
+
+  @media (max-width: 1100px) {
+    .industries-hero__layout,
+    .industries-priorities__layout,
+    .operating-lens__layout {
+      grid-template-columns: 1fr;
+      gap: 64px;
+    }
+
+    .industry-map__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .industries-hero__panel {
+      max-width: 640px;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .industries-hero {
+      padding: 104px 0 72px;
+    }
+
+    .environment-stage__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .environment-stage__primary {
+      height: 520px;
+      min-height: 420px;
+    }
+
+    .environment-stage__secondary {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .environment-stage__secondary figure {
+      height: 220px;
+    }
+
+    .environment-stage__caption {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .environment-stage__caption span {
+      text-align: left;
+    }
+
+    .industry-map__grid,
+    .industries-priorities__grid,
+    .operating-lens__sequence {
+      grid-template-columns: 1fr;
+    }
+
+    .operating-lens__sequence article {
+      min-height: auto;
+    }
+
+    .operating-lens__sequence span {
+      margin-bottom: 56px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .industries-hero {
+      padding: 84px 0 56px;
+    }
+
+    .industries-hero__layout,
+    .industries-priorities__layout,
+    .operating-lens__layout {
+      gap: 48px;
+    }
+
+    .industries-hero__panel p {
+      margin-bottom: 32px;
+    }
+
+    .environment-stage__primary {
+      height: 380px;
+      min-height: 380px;
+    }
+
+    .environment-stage__secondary {
+      grid-template-columns: 1fr;
+    }
+
+    .environment-stage__secondary figure {
+      height: 240px;
+    }
+
+    .industry-map__grid {
+      margin-top: 40px;
+    }
+
+    .operating-lens__sequence article {
+      padding: 28px 24px;
+    }
+  }
+</style>

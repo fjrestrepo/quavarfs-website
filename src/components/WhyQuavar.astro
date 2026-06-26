@@ -1,0 +1,140 @@
+<section class="why section">
+  <div class="container">
+    <div class="why__header">
+      <p class="eyebrow">Why QUAVAR</p>
+
+      <h2>Built on systems.<br />Delivered by people.</h2>
+    </div>
+
+    <article class="why__row">
+      <div class="why__content">
+        <h3>Exceptional People</h3>
+
+        <p>
+          Highly trained professionals supported by continuous education,
+          operational excellence and a culture of accountability.
+        </p>
+      </div>
+
+      <div class="why__number">01</div>
+    </article>
+
+    <article class="why__row">
+      <div class="why__content">
+        <h3>Smart Solutions</h3>
+
+        <p>
+          Standardized workflows and measurable quality systems designed to
+          support every facility we maintain.
+        </p>
+      </div>
+
+      <div class="why__number">02</div>
+    </article>
+
+    <article class="why__row">
+      <div class="why__content">
+        <h3>Measurable Results</h3>
+
+        <p>
+          Consistent outcomes supported by documented processes, inspections and
+          continuous improvement.
+        </p>
+      </div>
+
+      <div class="why__number">03</div>
+    </article>
+  </div>
+</section>
+
+<style>
+  .why {
+    background: var(--color-white);
+  }
+
+  .why__header {
+    max-width: 720px;
+    margin-bottom: 72px;
+  }
+
+  .why__header h2 {
+    margin-top: 24px;
+  }
+
+  .why__row {
+    display: grid;
+    grid-template-columns: minmax(0, 620px) 1fr;
+    align-items: center;
+    padding: 56px 0;
+    border-top: 1px solid var(--color-light-gray);
+  }
+
+  .why__row:last-child {
+    border-bottom: 1px solid var(--color-light-gray);
+  }
+
+  .why__content h3 {
+    margin-bottom: 18px;
+    font-size: 30px;
+  }
+
+  .why__content p {
+    max-width: 520px;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .why__number {
+    justify-self: end;
+    font-family: var(--font-heading);
+    font-size: clamp(88px, 10vw, 160px);
+    font-weight: 600;
+    line-height: 1;
+    color: rgba(0, 30, 61, 0.08);
+    user-select: none;
+  }
+
+  @media (max-width: 1024px) {
+    .why__header {
+      margin-bottom: 64px;
+    }
+
+    .why__row {
+      padding: 52px 0;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .why__row {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .why__number {
+      justify-self: start;
+      font-size: 72px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .why__header {
+      margin-bottom: 48px;
+    }
+
+    .why__header h2 {
+      margin-top: 22px;
+    }
+
+    .why__row {
+      padding: 44px 0;
+    }
+
+    .why__content h3 {
+      font-size: 26px;
+    }
+
+    .why__content p {
+      font-size: 17px;
+    }
+  }
+</style>

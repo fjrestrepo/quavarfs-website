@@ -1,0 +1,725 @@
+---
+import InteriorLayout from '../layouts/InteriorLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import SplitSection from '../components/SplitSection.astro';
+import MetricBand from '../components/MetricBand.astro';
+import CTA from '../components/CTA.astro';
+
+const pageTitle = 'About | QUAVAR Facility Services';
+const pageDescription =
+  'QUAVAR Facility Services is a corporate facility services partner built around operational discipline, consistent standards and professional environments.';
+
+
+const identityMetrics = [
+  {
+    value: '04',
+    label: 'Brand Pillars',
+    description: 'Trust, commitment, integrity and excellence guide the operating culture.',
+  },
+  {
+    value: '03',
+    label: 'Operating Standards',
+    description: 'Structured programs, professional execution and measurable quality.',
+  },
+  {
+    value: '01',
+    label: 'Category Position',
+    description: 'Facility Services first — never a small janitorial presentation.',
+  },
+  {
+    value: '05+',
+    label: 'Future Applications',
+    description: 'Website, proposals, presentations, uniforms, signage and client materials.',
+  },
+];
+
+const principles = [
+  {
+    number: '01',
+    title: 'Trust',
+    description:
+      'We build long-term confidence through accountability, professional communication and consistent follow-through.',
+  },
+  {
+    number: '02',
+    title: 'Commitment',
+    description:
+      'We stay close to the work, the environment and the client expectations until service standards are clearly met.',
+  },
+  {
+    number: '03',
+    title: 'Integrity',
+    description:
+      'We make decisions that protect the facility, respect the people inside it and strengthen the relationship over time.',
+  },
+  {
+    number: '04',
+    title: 'Excellence',
+    description:
+      'We pursue higher standards through training, supervision, quality control and continuous improvement.',
+  },
+];
+
+const operatingStandards = [
+  {
+    title: 'Structured Programs',
+    description:
+      'Service plans are designed around each facility, schedule, traffic pattern and operational standard.',
+  },
+  {
+    title: 'Professional Execution',
+    description:
+      'Field work is supported by defined routines, trained personnel, clear expectations and responsible supervision.',
+  },
+  {
+    title: 'Measurable Quality',
+    description:
+      'Ongoing review, communication and improvement cycles help maintain consistency across the environments we support.',
+  },
+];
+
+const differentiators = [
+  'Corporate presentation',
+  'Operational discipline',
+  'Service consistency',
+  'Professional communication',
+  'Quality-focused supervision',
+  'Facility-centered planning',
+];
+---
+
+<InteriorLayout title={pageTitle} description={pageDescription}>
+  <main class="about-page">
+    <section class="about-hero" aria-labelledby="about-title">
+      <div class="container about-hero__grid">
+        <div class="about-hero__content">
+          <p class="eyebrow">About QUAVAR</p>
+          <h1 id="about-title">A facility services company built for professional environments.</h1>
+          <p>
+            QUAVAR Facility Services was created to support organizations that expect more than task completion. We build service programs around operational discipline, professional standards and environments that need to perform every day.
+          </p>
+        </div>
+
+        <div class="about-hero__visual" aria-label="Modern professional facility supported by QUAVAR">
+          <div class="about-hero__image">
+            <img
+              src="/img/architecture/corporate-lobby.webp"
+              alt="Professional facility services team in a modern corporate environment"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              width="1536"
+              height="1024"
+            />
+          </div>
+          <div class="about-hero__card">
+            <span>Facility Services</span>
+            <strong>Building Better Environments.</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="belief-section" aria-labelledby="belief-title">
+      <div class="container belief-grid">
+        <div>
+          <p class="section-label">What Defines Us</p>
+        </div>
+
+        <div class="belief-copy">
+          <h2 id="belief-title">Facilities should reflect the standards of the organizations they serve.</h2>
+          <p>
+            Every environment communicates something. A workplace, clinic, campus, lobby or operational facility can reinforce confidence, order and care — or it can create friction. QUAVAR exists to help organizations maintain spaces that feel prepared, credible and aligned with their professional expectations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <MetricBand
+      eyebrow="Brand Operating System"
+      title="Built as a corporate facility services platform."
+      description="QUAVAR is designed to scale beyond individual tasks into a consistent operating model for professional environments, client communication and future service expansion."
+      variant="dark"
+      items={identityMetrics}
+    />
+
+    <SplitSection
+      eyebrow="Operating Philosophy"
+      title="Exceptional environments are created by systems, not isolated tasks."
+      description="Clean, safe and professional spaces require people, planning, supervision and measurable standards working together. Our approach is designed to reduce variability, improve communication and support the way each facility actually operates."
+      image="/img/operations/supervisor-tablet.webp"
+      alt="Facility services supervisor reviewing operational standards on a tablet"
+      imagePosition="left"
+      theme="dark"
+      stats={[
+        { value: '01', label: 'Structured Programs' },
+        { value: '02', label: 'Professional Execution' },
+        { value: '03', label: 'Measurable Quality' },
+      ]}
+    >
+      <ul>
+        {operatingStandards.map((standard) => (
+          <li><strong>{standard.title}:</strong> {standard.description}</li>
+        ))}
+      </ul>
+    </SplitSection>
+
+    <section class="positioning-section" aria-labelledby="positioning-title">
+      <div class="container positioning-grid">
+        <div class="positioning-panel positioning-panel--navy">
+          <p class="section-label section-label--dark">Positioning</p>
+          <h2 id="positioning-title">Not a small cleaning company. A facility services partner.</h2>
+        </div>
+
+        <div class="positioning-panel positioning-panel--image">
+          <img
+            src="/img/operations/detail-shot.webp"
+            alt="Professional facility detail representing precision and operational standards"
+            loading="lazy"
+            decoding="async"
+            width="1536"
+            height="1024"
+          />
+        </div>
+
+        <div class="positioning-panel positioning-panel--copy">
+          <p>
+            QUAVAR is intentionally positioned as a calm, technical and premium brand. The work may happen behind the scenes, but the result should be visible in how a facility feels: orderly, reliable, consistent and professionally maintained.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="principles-section" aria-labelledby="principles-title">
+      <div class="container">
+        <SectionHeader
+          id="principles-title"
+          eyebrow="Brand Principles"
+          title="Four principles guide every environment we support."
+          description="The QUAVAR brand is built around standards that shape how we communicate, plan, execute and improve every service program."
+        />
+
+        <div class="principles-grid">
+          {principles.map((principle, index) => (
+            <FeatureCard
+              number={principle.number}
+              title={principle.title}
+              description={principle.description}
+              variant="panel"
+              dark={index === 3}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="standard-section" aria-labelledby="standard-title">
+      <div class="container standard-panel">
+        <SectionHeader
+          id="standard-title"
+          eyebrow="The QUAVAR Standard"
+          title="A consistent standard for different operational environments."
+          description="Organizations do not need a generic vendor. They need a partner that can understand the environment, adapt the service model and maintain the same level of professionalism across changing operational needs."
+        />
+
+        <div class="standard-actions">
+          <a href="/services" class="button button-primary">Explore Services</a>
+          <a href="/industries" class="button button-secondary">View Industries</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="differentiators-section" aria-labelledby="differentiators-title">
+      <div class="container differentiators-grid">
+        <SectionHeader
+          id="differentiators-title"
+          eyebrow="Why Organizations Choose QUAVAR"
+          title="Built to look, communicate and operate like a serious facility services organization."
+        />
+
+        <div class="differentiators-list" aria-label="QUAVAR differentiators">
+          {differentiators.map((item) => (
+            <div class="differentiator-item">
+              <span aria-hidden="true"></span>
+              <p>{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <SplitSection
+      eyebrow="Our Role"
+      title="To help facilities feel prepared, credible and ready for the people who depend on them."
+      description="QUAVAR supports the spaces where organizations operate, serve clients, welcome visitors and protect their reputation. Our responsibility is to bring structure, consistency and professional execution to every service program we build."
+      image="/img/operations/team-lobby.webp"
+      alt="Professional team in a modern facility environment"
+      imagePosition="right"
+      theme="soft"
+      actions={[
+        { label: 'Request a Conversation', href: '/contact/#reach-quavar', variant: 'primary' },
+        { label: 'View Services', href: '/services', variant: 'secondary' },
+      ]}
+    />
+
+    <CTA
+      eyebrow="Next Step"
+      title="Build a better operating standard for your facility."
+      description="Speak with QUAVAR about your environment, your expectations and the service framework required to support them."
+      primaryLabel="Contact QUAVAR"
+      primaryHref="/contact/#reach-quavar"
+      secondaryLabel="+1 (813) 600-7422"
+      secondaryHref="tel:+18136007422"
+    />
+  </main>
+</InteriorLayout>
+
+<style>
+  .about-page {
+    width: 100%;
+    overflow: hidden;
+    background: var(--color-white);
+    color: var(--color-navy);
+  }
+
+  .about-hero {
+    position: relative;
+    padding: 112px 0 116px;
+    background:
+      linear-gradient(90deg, rgba(0, 30, 61, 0.98) 0%, rgba(0, 30, 61, 0.98) 62%, rgba(0, 168, 168, 0.1) 62%, rgba(0, 168, 168, 0.1) 100%),
+      var(--color-navy);
+    color: var(--color-white);
+  }
+
+  .about-hero::after {
+    position: absolute;
+    right: -210px;
+    bottom: -260px;
+    width: 620px;
+    height: 620px;
+    border: 88px solid rgba(255, 255, 255, 0.045);
+    border-radius: 50%;
+    content: '';
+  }
+
+  .about-hero__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(420px, 0.82fr);
+    gap: clamp(64px, 7vw, 88px);
+    align-items: center;
+  }
+
+  .about-hero__content h1 {
+    max-width: 860px;
+    margin: 0;
+    color: var(--color-white);
+    font-size: clamp(3.25rem, 6.4vw, 6.65rem);
+    font-weight: 600;
+    line-height: 0.96;
+    letter-spacing: -0.065em;
+  }
+
+  .about-hero__content p:not(.eyebrow) {
+    max-width: 610px;
+    margin: 36px 0 0;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 1.12rem;
+    line-height: 1.74;
+  }
+
+  .about-hero__visual {
+    position: relative;
+    min-height: 620px;
+  }
+
+  .about-hero__visual::before {
+    position: absolute;
+    top: 6px;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    border: 52px solid rgba(255, 255, 255, 0.92);
+    border-radius: 50%;
+    content: '';
+  }
+
+  .about-hero__visual::after {
+    position: absolute;
+    top: 168px;
+    left: 204px;
+    width: 54px;
+    height: 184px;
+    background: var(--color-teal);
+    transform: rotate(-45deg);
+    content: '';
+  }
+
+  .about-hero__image {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 80%;
+    height: 520px;
+    overflow: hidden;
+    background: var(--color-light-gray);
+  }
+
+  .about-hero__image::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 30, 61, 0) 36%, rgba(0, 30, 61, 0.34) 100%);
+    content: '';
+  }
+
+  .about-hero__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .about-hero__card {
+    position: absolute;
+    left: 42px;
+    bottom: 64px;
+    width: 270px;
+    padding: 28px;
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--color-navy);
+  }
+
+  .about-hero__card span {
+    display: block;
+    margin-bottom: 18px;
+    color: var(--color-teal);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .about-hero__card strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.62rem;
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+  }
+
+  .belief-section {
+    padding: var(--section-y) 0;
+    background: var(--color-white);
+  }
+
+  .belief-grid {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.34fr) minmax(0, 0.86fr);
+    gap: clamp(48px, 8vw, 96px);
+    align-items: start;
+  }
+
+  .belief-copy h2 {
+    max-width: 940px;
+    margin: 0;
+    color: var(--color-navy);
+    font-size: clamp(2.8rem, 5.2vw, 5.45rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.06em;
+  }
+
+  .belief-copy p {
+    max-width: 700px;
+    margin: 44px 0 0 auto;
+    padding-top: 40px;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-slate);
+    font-size: 1.1rem;
+    line-height: 1.78;
+  }
+
+  .positioning-section {
+    padding: 96px 0 128px;
+    background: var(--color-off-white);
+  }
+
+  .positioning-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.88fr) minmax(0, 0.72fr);
+    grid-auto-rows: minmax(360px, auto);
+    gap: 18px;
+  }
+
+  .positioning-panel {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .positioning-panel--navy {
+    display: flex;
+    min-height: 560px;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 44px;
+    background: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  .positioning-panel--navy::after {
+    position: absolute;
+    right: -120px;
+    bottom: -160px;
+    width: 360px;
+    height: 360px;
+    border: 54px solid rgba(255, 255, 255, 0.055);
+    border-radius: 50%;
+    content: '';
+  }
+
+  .positioning-panel--navy h2 {
+    position: relative;
+    z-index: 1;
+    max-width: 520px;
+    margin: 0;
+    color: var(--color-white);
+    font-size: clamp(2.35rem, 4vw, 4.25rem);
+    font-weight: 600;
+    line-height: 1.02;
+    letter-spacing: -0.055em;
+  }
+
+  .positioning-panel--image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .positioning-panel--copy {
+    display: flex;
+    align-items: flex-end;
+    padding: 38px;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+  }
+
+  .positioning-panel--copy p {
+    margin: 0;
+    color: var(--color-slate);
+    font-size: 1.02rem;
+    line-height: 1.75;
+  }
+
+  .principles-section {
+    padding: var(--section-y) 0;
+    background: var(--color-white);
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 64px;
+  }
+
+  .standard-section {
+    padding: var(--section-y) 0;
+    background: var(--color-off-white);
+  }
+
+  .standard-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: clamp(48px, 8vw, 96px);
+    align-items: end;
+    padding: clamp(40px, 6vw, 72px);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+  }
+
+  .standard-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: flex-start;
+  }
+
+  .differentiators-section {
+    padding: var(--section-y) 0;
+    background: var(--color-white);
+  }
+
+  .differentiators-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(360px, 0.72fr);
+    gap: clamp(48px, 8vw, 96px);
+    align-items: start;
+  }
+
+  .differentiators-list {
+    display: grid;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .differentiator-item {
+    display: grid;
+    grid-template-columns: 22px minmax(0, 1fr);
+    gap: 22px;
+    align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .differentiator-item span {
+    width: 8px;
+    height: 8px;
+    background: var(--color-teal);
+  }
+
+  .differentiator-item p {
+    margin: 0;
+    color: var(--color-navy);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 1120px) {
+    .about-hero__grid,
+    .belief-grid,
+    .standard-panel,
+    .differentiators-grid {
+      grid-template-columns: 1fr;
+      gap: 64px;
+    }
+
+    .about-hero__visual {
+      min-height: 560px;
+    }
+
+    .belief-copy p {
+      margin-left: 0;
+    }
+
+    .positioning-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .positioning-panel--copy {
+      grid-column: span 2;
+      min-height: 260px;
+    }
+
+    .principles-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .standard-actions {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 840px) {
+    .about-hero {
+      padding: 88px 0;
+      background: var(--color-navy);
+    }
+
+    .about-hero__visual {
+      display: grid;
+      min-height: auto;
+      gap: 18px;
+    }
+
+    .about-hero__visual::before,
+    .about-hero__visual::after,
+    .about-hero__image,
+    .about-hero__card {
+      position: relative;
+      inset: auto;
+    }
+
+    .about-hero__visual::before {
+      width: 230px;
+      height: 230px;
+      border-width: 38px;
+    }
+
+    .about-hero__visual::after {
+      top: -108px;
+      left: 148px;
+      width: 48px;
+      height: 136px;
+      margin-bottom: -116px;
+    }
+
+    .about-hero__image,
+    .about-hero__card {
+      width: 100%;
+    }
+
+    .about-hero__image {
+      height: 420px;
+    }
+
+    .positioning-grid,
+    .principles-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .positioning-panel--copy {
+      grid-column: auto;
+    }
+
+    .positioning-panel--navy {
+      min-height: 360px;
+      padding: 32px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .about-hero,
+    .belief-section,
+    .positioning-section,
+    .principles-section,
+    .standard-section,
+    .differentiators-section {
+      padding: 80px 0;
+    }
+
+    .about-hero__grid,
+    .belief-grid,
+    .standard-panel,
+    .differentiators-grid {
+      gap: 48px;
+    }
+
+    .belief-copy p {
+      padding-top: 32px;
+    }
+
+    .positioning-panel--navy,
+    .positioning-panel--copy {
+      padding: 28px;
+    }
+
+    .about-hero__image {
+      height: 340px;
+    }
+
+    .standard-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .standard-actions .button {
+      width: 100%;
+    }
+  }
+</style>

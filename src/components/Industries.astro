@@ -1,0 +1,169 @@
+<section class="home-industries section" id="industries" aria-labelledby="home-industries-title">
+  <div class="container">
+    <div class="home-industries__header">
+      <p class="eyebrow">Industries</p>
+
+      <div class="home-industries__intro">
+        <h2 id="home-industries-title">Professional environments require operating intelligence.</h2>
+        <p>
+          QUAVAR supports facility programs across sectors where presentation,
+          continuity and occupant experience influence daily performance.
+        </p>
+      </div>
+    </div>
+
+    <div class="home-industries__grid" aria-label="Industries served by QUAVAR Facility Services">
+      <a class="home-industry-card" href="/industries/#industry-map" aria-label="View healthcare industries served">
+        <img src="/img/industries/healthcare.webp" alt="Modern healthcare facility environment" loading="lazy" decoding="async" width="1536" height="1024" />
+        <span>Healthcare</span>
+      </a>
+
+      <a class="home-industry-card" href="/industries/#industry-map" aria-label="View commercial industries served">
+        <img src="/img/industries/commercial.webp" alt="Premium commercial office environment" loading="lazy" decoding="async" width="1536" height="1024" />
+        <span>Commercial</span>
+      </a>
+
+      <a class="home-industry-card" href="/industries/#industry-map" aria-label="View industrial industries served">
+        <img src="/img/industries/industrial.webp" alt="Modern industrial facility environment" loading="lazy" decoding="async" width="1536" height="1024" />
+        <span>Industrial</span>
+      </a>
+
+      <a class="home-industry-card" href="/industries/#industry-map" aria-label="View education industries served">
+        <img src="/img/industries/education.webp" alt="Contemporary education facility" loading="lazy" decoding="async" width="1536" height="1024" />
+        <span>Education</span>
+      </a>
+
+      <a class="home-industry-card" href="/industries/#industry-map" aria-label="View hospitality industries served">
+        <img src="/img/industries/hospitality.webp" alt="Premium hospitality interior" loading="lazy" decoding="async" width="1536" height="1024" />
+        <span>Hospitality</span>
+      </a>
+
+      <a class="home-industry-card" href="/industries/#industry-map" aria-label="View retail industries served">
+        <img src="/img/industries/retail.webp" alt="Modern retail environment" loading="lazy" decoding="async" width="1536" height="1024" />
+        <span>Retail</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .home-industries {
+    background: var(--color-white);
+  }
+
+  .home-industries__header {
+    margin-bottom: 72px;
+  }
+
+  .home-industries__intro {
+    display: grid;
+    grid-template-columns: minmax(0, 560px) minmax(0, 520px);
+    gap: 96px;
+    align-items: end;
+    margin-top: 24px;
+  }
+
+  .home-industries__intro p {
+    font-size: 20px;
+    line-height: 1.65;
+  }
+
+  .home-industries__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .home-industry-card {
+    position: relative;
+    display: block;
+    min-height: 260px;
+    overflow: hidden;
+    background: var(--color-navy);
+    text-decoration: none;
+  }
+
+  .home-industry-card img {
+    width: 100%;
+    height: 100%;
+    min-height: 260px;
+    object-fit: cover;
+    opacity: 0.82;
+    transition:
+      opacity var(--transition-medium),
+      transform var(--transition-medium);
+  }
+
+  .home-industry-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0, 30, 61, 0.05), rgba(0, 30, 61, 0.78)),
+      linear-gradient(90deg, rgba(0, 30, 61, 0.2), rgba(0, 30, 61, 0));
+    pointer-events: none;
+  }
+
+  .home-industry-card span {
+    position: absolute;
+    left: 28px;
+    right: 28px;
+    bottom: 28px;
+    z-index: 2;
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .home-industry-card:hover img,
+  .home-industry-card:focus-visible img {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+
+  .home-industry-card:focus-visible {
+    outline: 3px solid var(--color-teal);
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 1024px) {
+    .home-industries__header {
+      margin-bottom: 64px;
+    }
+
+    .home-industries__intro {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .home-industries__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .home-industries__header {
+      margin-bottom: 48px;
+    }
+
+    .home-industries__intro {
+      gap: 24px;
+      margin-top: 22px;
+    }
+
+    .home-industries__intro p {
+      font-size: 18px;
+    }
+
+    .home-industries__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .home-industry-card,
+    .home-industry-card img {
+      min-height: 240px;
+    }
+  }
+</style>

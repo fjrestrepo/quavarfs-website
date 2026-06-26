@@ -1,0 +1,214 @@
+<section class="services section" id="services">
+  <div class="container">
+    <div class="services__header">
+      <p class="eyebrow">Our Services</p>
+
+      <div class="services__intro">
+        <h2>Integrated Facility Services</h2>
+
+        <p>
+          Programs designed to protect assets, support operations and elevate
+          the environments people rely on every day.
+        </p>
+      </div>
+    </div>
+
+    <div class="services__grid">
+      <article class="service-card">
+        <img loading="lazy" decoding="async" width="1536" height="1024" src="/img/services/commercial-cleaning.webp" alt="Commercial cleaning service environment" />
+        <div class="service-card__content">
+          <span>01</span>
+          <h3>Commercial Cleaning</h3>
+          <p>Daily and periodic programs for professional environments.</p>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <img loading="lazy" decoding="async" width="1536" height="1024" src="/img/services/healthcare-corridor.webp" alt="Modern healthcare corridor" />
+        <div class="service-card__content">
+          <span>02</span>
+          <h3>Healthcare</h3>
+          <p>Controlled cleaning support for medical and clinical facilities.</p>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <img loading="lazy" decoding="async" width="1536" height="1024" src="/img/services/floor-care.webp" alt="Professional floor care equipment" />
+        <div class="service-card__content">
+          <span>03</span>
+          <h3>Floor Care</h3>
+          <p>Resilient and hard-surface maintenance programs.</p>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <img loading="lazy" decoding="async" width="1536" height="1024" src="/img/services/carpet-care.webp" alt="Professional carpet care service" />
+        <div class="service-card__content">
+          <span>04</span>
+          <h3>Carpet Care</h3>
+          <p>Scheduled care for carpets, textiles and high-traffic areas.</p>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <img loading="lazy" decoding="async" width="1536" height="1024" src="/img/services/post-construction.webp" alt="Modern construction and industrial environment" />
+        <div class="service-card__content">
+          <span>05</span>
+          <h3>Post Construction</h3>
+          <p>Final-stage cleaning support for new and renovated spaces.</p>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <img loading="lazy" decoding="async" width="1536" height="1024" src="/img/services/specialty-services.webp" alt="Facility supervisor reviewing operations" />
+        <div class="service-card__content">
+          <span>06</span>
+          <h3>Specialty Services</h3>
+          <p>Flexible support for unique facility needs and operational priorities.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    background: var(--color-off-white);
+  }
+
+  .services__header {
+    margin-bottom: 72px;
+  }
+
+  .services__intro {
+    display: grid;
+    grid-template-columns: minmax(0, 500px) minmax(0, 540px);
+    gap: 96px;
+    align-items: end;
+    margin-top: 24px;
+  }
+
+  .services__intro p {
+    max-width: 520px;
+    font-size: 20px;
+    line-height: 1.65;
+  }
+
+  .services__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .service-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 420px;
+    background: var(--color-navy);
+  }
+
+  .service-card img {
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    object-fit: cover;
+    opacity: 0.76;
+    filter: brightness(0.96) saturate(0.96) contrast(1.02);
+    transition:
+      opacity var(--transition-medium),
+      filter var(--transition-medium),
+      transform var(--transition-medium);
+  }
+
+  .service-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0, 30, 61, 0.04), rgba(0, 30, 61, 0.8)),
+      linear-gradient(90deg, rgba(0, 30, 61, 0.22), rgba(0, 30, 61, 0));
+    pointer-events: none;
+    transition: background var(--transition-medium);
+  }
+
+  .service-card__content {
+    position: absolute;
+    left: 28px;
+    right: 28px;
+    bottom: 28px;
+    z-index: 2;
+  }
+
+  .service-card__content span {
+    display: block;
+    margin-bottom: 16px;
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-teal);
+  }
+
+  .service-card__content h3 {
+    margin-bottom: 14px;
+    color: var(--color-white);
+    font-size: 28px;
+  }
+
+  .service-card__content p {
+    max-width: 320px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .service-card:hover img {
+    opacity: 1;
+    filter: brightness(1.28) saturate(1.06) contrast(1.01);
+    transform: scale(1.04);
+  }
+
+  .service-card:hover::after {
+    background:
+      linear-gradient(180deg, rgba(0, 30, 61, 0.01), rgba(0, 30, 61, 0.48)),
+      linear-gradient(90deg, rgba(0, 30, 61, 0.08), rgba(0, 30, 61, 0));
+  }
+
+  @media (max-width: 1024px) {
+    .services__header {
+      margin-bottom: 64px;
+    }
+
+    .services__intro {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .services__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .services__header {
+      margin-bottom: 48px;
+    }
+
+    .services__intro {
+      gap: 24px;
+      margin-top: 22px;
+    }
+
+    .services__intro p {
+      font-size: 18px;
+    }
+
+    .services__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .service-card,
+    .service-card img {
+      min-height: 360px;
+    }
+  }
+</style>

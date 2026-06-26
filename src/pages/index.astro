@@ -1,16 +1,29 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Footer from '../components/Footer.astro';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import WhyQuavar from "../components/WhyQuavar.astro";
+import Services from "../components/Services.astro";
+import Industries from "../components/Industries.astro";
+import CTA from "../components/CTA.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<Layout title="QUAVAR Facility Services">
+<Layout
+  title="QUAVAR Facility Services | Building Better Environments"
+  description="QUAVAR Facility Services supports professional environments across Tampa Bay and Central Florida with disciplined facility service programs, operational reliability and corporate standards."
+>
+  <Header />
 
-    <Header />
+  <Hero />
 
-    <Hero />
+  <WhyQuavar />
 
-    <Footer />
+  <Services />
 
+  <Industries />
+
+  <CTA />
+
+  <Footer />
 </Layout>

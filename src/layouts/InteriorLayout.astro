@@ -1,0 +1,27 @@
+---
+import Layout from './Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const {
+  title = 'QUAVAR Facility Services',
+  description = 'Facility Services for professional and high-performance environments.',
+} = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <Header />
+
+  <main class="interior-page">
+    <slot />
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .interior-page {
+    background: #ffffff;
+    color: #001e3d;
+  }
+</style>

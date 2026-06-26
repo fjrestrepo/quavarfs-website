@@ -1,0 +1,192 @@
+---
+interface Props {
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  variant?: 'standard' | 'compact';
+}
+
+const {
+  id = 'contact',
+  eyebrow = 'Contact QUAVAR',
+  title = 'Ready to build a better environment?',
+  description = 'Let’s discuss how QUAVAR can support your facility operations.',
+  primaryLabel = 'Contact QUAVAR',
+  primaryHref = '/contact/#reach-quavar',
+  secondaryLabel = '+1 (813) 600-7422',
+  secondaryHref = 'tel:+18136007422',
+  variant = 'standard',
+} = Astro.props;
+---
+
+<section class={`cta cta--${variant} section`} id={id}>
+  <div class="container">
+    <div class="cta__panel">
+      <div class="cta__content">
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+
+        <h2>{title}</h2>
+
+        {description && <p>{description}</p>}
+      </div>
+
+      <div class="cta__actions" aria-label="Contact options">
+        {primaryLabel && primaryHref && (
+          <a class="button button-light" href={primaryHref}>
+            {primaryLabel}
+          </a>
+        )}
+
+        {secondaryLabel && secondaryHref && (
+          <a class="cta__phone" href={secondaryHref}>
+            {secondaryLabel}
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    background: var(--color-white);
+  }
+
+  .cta__panel {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 64px;
+    align-items: center;
+    padding: clamp(56px, 6vw, 82px);
+    background:
+      radial-gradient(circle at 100% 0%, rgba(0, 168, 168, 0.18), transparent 32%),
+      linear-gradient(135deg, #001326 0%, var(--color-navy) 58%, #00284f 100%);
+    box-shadow: var(--shadow-premium);
+  }
+
+  .cta__panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    pointer-events: none;
+  }
+
+  .cta__panel::after {
+    content: "";
+    position: absolute;
+    right: 42px;
+    top: 42px;
+    width: 104px;
+    height: 104px;
+    border-top: 1.5px solid rgba(255, 255, 255, 0.46);
+    border-right: 1.5px solid rgba(255, 255, 255, 0.46);
+    pointer-events: none;
+  }
+
+  .cta .eyebrow {
+    color: var(--color-teal);
+  }
+
+  .cta h2 {
+    margin-top: 22px;
+    max-width: 760px;
+    color: var(--color-white);
+    letter-spacing: -0.052em;
+  }
+
+  .cta p {
+    margin-top: 24px;
+    max-width: 600px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: clamp(1.1rem, 1.4vw, 1.28rem);
+    line-height: 1.68;
+    text-wrap: pretty;
+  }
+
+  .cta__actions {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .cta__phone {
+    color: var(--color-white);
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    transition: color var(--transition-fast);
+  }
+
+  .cta__phone:hover,
+  .cta__phone:focus-visible {
+    color: var(--color-teal);
+  }
+
+  .cta--compact .cta__panel {
+    padding: 58px 68px;
+  }
+
+  .cta--compact h2 {
+    max-width: 660px;
+  }
+
+  .cta--compact p {
+    max-width: 540px;
+    font-size: 18px;
+  }
+
+  @media (max-width: 900px) {
+    .cta__panel {
+      grid-template-columns: 1fr;
+      padding: 58px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .cta__panel,
+    .cta--compact .cta__panel {
+      gap: 34px;
+      padding: 42px 28px;
+    }
+
+    .cta__panel::after {
+      right: 24px;
+      top: 24px;
+      width: 64px;
+      height: 64px;
+    }
+
+    .cta h2 {
+      max-width: 100%;
+      letter-spacing: -0.045em;
+    }
+
+    .cta p,
+    .cta--compact p {
+      max-width: 100%;
+      font-size: 17px;
+      line-height: 1.66;
+    }
+
+    .cta__actions {
+      width: 100%;
+      gap: 16px;
+    }
+
+    .cta__actions .button,
+    .cta__actions a[class*="button"] {
+      width: 100%;
+    }
+  }
+</style>

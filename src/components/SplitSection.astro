@@ -1,0 +1,356 @@
+---
+interface Action {
+  label: string;
+  href: string;
+  variant?: 'primary' | 'secondary' | 'accent';
+}
+
+interface Stat {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  image?: string;
+  alt?: string;
+  imagePosition?: 'left' | 'right';
+  theme?: 'light' | 'soft' | 'dark';
+  actions?: Action[];
+  stats?: Stat[];
+  id?: string;
+  class?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  image,
+  alt = '',
+  imagePosition = 'right',
+  theme = 'light',
+  actions = [],
+  stats = [],
+  id,
+  class: className = '',
+} = Astro.props;
+
+const classes = [
+  'qv-split-section',
+  `qv-split-section--${theme}`,
+  imagePosition === 'left' ? 'qv-split-section--image-left' : '',
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<section id={id} class={classes}>
+  <div class="container qv-split-section__grid">
+    <div class="qv-split-section__content">
+      {eyebrow && <p class="qv-split-section__eyebrow">{eyebrow}</p>}
+
+      <h2>{title}</h2>
+
+      {description && <p class="qv-split-section__description">{description}</p>}
+
+      <slot />
+
+      {stats.length > 0 && (
+        <div class="qv-split-section__stats" aria-label="Supporting metrics">
+          {stats.map((stat) => (
+            <div class="qv-split-section__stat">
+              <strong>{stat.value}</strong>
+              <span>{stat.label}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {actions.length > 0 && (
+        <div class="qv-split-section__actions">
+          {actions.map((action) => {
+            const buttonClass =
+              action.variant === 'secondary'
+                ? 'button button-secondary'
+                : action.variant === 'accent'
+                  ? 'button button-accent'
+                  : 'button button-primary';
+
+            return (
+              <a class={buttonClass} href={action.href}>
+                {action.label}
+              </a>
+            );
+          })}
+        </div>
+      )}
+    </div>
+
+    {image && (
+      <div class="qv-split-section__media">
+        <img src={image} alt={alt} width="1536" height="1024" loading="lazy" decoding="async" />
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .qv-split-section {
+    position: relative;
+    overflow: hidden;
+    padding: var(--section-y) 0;
+    background: var(--color-white);
+  }
+
+  .qv-split-section--soft {
+    background:
+      linear-gradient(180deg, rgba(247, 248, 250, 0.92), #ffffff 100%);
+  }
+
+  .qv-split-section--dark {
+    background:
+      radial-gradient(circle at 100% 0%, rgba(0, 168, 168, 0.13), transparent 34%),
+      var(--color-navy);
+  }
+
+  .qv-split-section__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(64px, 7vw, 112px);
+    align-items: center;
+  }
+
+  .qv-split-section--image-left .qv-split-section__content {
+    order: 2;
+  }
+
+  .qv-split-section--image-left .qv-split-section__media {
+    order: 1;
+  }
+
+  .qv-split-section__content {
+    max-width: 590px;
+  }
+
+  .qv-split-section__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+    color: var(--color-teal);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .qv-split-section__eyebrow::before {
+    content: '';
+    width: 34px;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .qv-split-section h2 {
+    margin: 0;
+    max-width: 660px;
+    font-size: clamp(2.25rem, 4.2vw, 3.55rem);
+    letter-spacing: -0.052em;
+    line-height: 1.035;
+  }
+
+  .qv-split-section__description,
+  .qv-split-section__content :global(p) {
+    margin-top: 26px;
+    max-width: 590px;
+    color: var(--color-slate);
+    font-size: clamp(1.075rem, 1.25vw, 1.2rem);
+    line-height: 1.72;
+    text-wrap: pretty;
+  }
+
+  .qv-split-section__content :global(ul) {
+    display: grid;
+    gap: 16px;
+    margin: 34px 0 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .qv-split-section__content :global(li) {
+    position: relative;
+    padding-left: 30px;
+    color: var(--color-navy);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .qv-split-section__content :global(li)::before {
+    content: '';
+    position: absolute;
+    top: 0.72em;
+    left: 0;
+    width: 7px;
+    height: 7px;
+    background: var(--color-teal);
+  }
+
+  .qv-split-section__media {
+    position: relative;
+    min-height: 540px;
+    overflow: hidden;
+    background: var(--color-light-gray);
+    box-shadow: var(--shadow-premium);
+  }
+
+  .qv-split-section__media::before {
+    content: '';
+    position: absolute;
+    inset: 22px;
+    z-index: 2;
+    border-top: 1px solid rgba(255, 255, 255, 0.44);
+    border-right: 1px solid rgba(255, 255, 255, 0.44);
+    pointer-events: none;
+  }
+
+  .qv-split-section__media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(180deg, rgba(0, 30, 61, 0), rgba(0, 30, 61, 0.18)),
+      linear-gradient(90deg, rgba(0, 168, 168, 0.13), rgba(0, 168, 168, 0));
+    pointer-events: none;
+  }
+
+  .qv-split-section__media img {
+    width: 100%;
+    height: 100%;
+    min-height: 540px;
+    object-fit: cover;
+    filter: saturate(0.94) contrast(1.04);
+  }
+
+  .qv-split-section__stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    margin-top: 42px;
+    background: var(--color-border);
+    border: 1px solid var(--color-border);
+  }
+
+  .qv-split-section__stat {
+    padding: 26px 22px;
+    background: var(--surface-white);
+  }
+
+  .qv-split-section__stat strong {
+    display: block;
+    color: var(--color-navy);
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3vw, 2.65rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .qv-split-section__stat span {
+    display: block;
+    margin-top: 10px;
+    color: var(--color-slate);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .qv-split-section__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 42px;
+  }
+
+  .qv-split-section--dark .qv-split-section__eyebrow,
+  .qv-split-section--dark h2,
+  .qv-split-section--dark .qv-split-section__description,
+  .qv-split-section--dark .qv-split-section__content :global(p),
+  .qv-split-section--dark .qv-split-section__content :global(li) {
+    color: var(--color-white);
+  }
+
+  .qv-split-section--dark .qv-split-section__description,
+  .qv-split-section--dark .qv-split-section__content :global(p) {
+    opacity: 0.78;
+  }
+
+  .qv-split-section--dark .qv-split-section__stats {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .qv-split-section--dark .qv-split-section__stat {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .qv-split-section--dark .qv-split-section__stat strong,
+  .qv-split-section--dark .qv-split-section__stat span {
+    color: var(--color-white);
+  }
+
+  .qv-split-section--dark .qv-split-section__stat span {
+    opacity: 0.72;
+  }
+
+  @media (max-width: 980px) {
+    .qv-split-section__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .qv-split-section--image-left .qv-split-section__content,
+    .qv-split-section--image-left .qv-split-section__media {
+      order: initial;
+    }
+
+    .qv-split-section__content {
+      max-width: 720px;
+    }
+
+    .qv-split-section__media,
+    .qv-split-section__media img {
+      min-height: 430px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .qv-split-section {
+      padding: 86px 0;
+    }
+
+    .qv-split-section__grid {
+      gap: 50px;
+    }
+
+    .qv-split-section__media,
+    .qv-split-section__media img {
+      min-height: 340px;
+    }
+
+    .qv-split-section__media::before {
+      inset: 16px;
+    }
+
+    .qv-split-section__stats {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
