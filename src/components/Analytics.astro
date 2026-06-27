@@ -39,3 +39,62 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
     </script>
   )
 }
+
+<script>
+  function trackQuavarEvent(eventName, params = {}) {
+    const payload = {
+      page_path: window.location.pathname,
+      page_title: document.title,
+      ...params,
+    };
+
+    if (typeof window.gtag === "function") {
+      window.gtag("event", eventName, payload);
+    }
+
+    if (typeof window.clarity === "function") {
+      window.clarity("event", eventName);
+    }
+  }
+
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a");
+    if (!link) return;
+
+    const href = link.getAttribute("href") || "";
+    const linkText = link.textContent.trim().replace(/\s+/g, " ").slice(0, 100);
+    const isWorkWithUs =
+      link.closest("#work-with-us") ||
+      href.toLowerCase().includes("work%20with%20quavar") ||
+      href.toLowerCase().includes("career") ||
+      href.toLowerCase().includes("resume");
+
+    if (href.startsWith("tel:")) {
+      trackQuavarEvent("phone_click", {
+        link_text: linkText,
+        link_url: href,
+      });
+    }
+
+    if (href.startsWith("mailto:")) {
+      trackQuavarEvent(isWorkWithUs ? "work_with_us_click" : "email_click", {
+        link_text: linkText,
+        link_url: href,
+      });
+    }
+  });
+
+  document.addEventListener("submit", (event) => {
+    const form = event.target;
+    if (!(form instanceof HTMLFormElement)) return;
+
+    const action = form.getAttribute("action") || "";
+
+    if (action.startsWith("mailto:")) {
+      trackQuavarEvent("contact_form_attempt", {
+        form_name: "contact_form",
+        form_action: "mailto",
+      });
+    }
+  });
+</script>
