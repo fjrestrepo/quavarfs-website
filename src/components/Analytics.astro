@@ -10,9 +10,16 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
 
       <script define:vars={{ gaId }} is:inline>
         window.dataLayer = window.dataLayer || [];
-        window.gtag = window.gtag || function gtag(){window.dataLayer.push(arguments);};
+        window.gtag =
+          window.gtag ||
+          function gtag() {
+            window.dataLayer.push(arguments);
+          };
+
         window.gtag('js', new Date());
-        window.gtag('config', gaId);
+        window.gtag('config', gaId, {
+          send_page_view: true,
+        });
       </script>
     </>
   )
@@ -21,32 +28,186 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
 {
   clarityId && (
     <script define:vars={{ clarityId }} is:inline>
-      (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);
-        t.async=1;
-        t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];
-        y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", clarityId);
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = 'https://www.clarity.ms/tag/' + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, 'clarity', 'script', clarityId);
     </script>
   )
 }
 
 <script is:inline>
-  window.trackQuavarEvent = function trackQuavarEvent(eventName, params = {}) {
-    const payload = {
-      page_path: window.location.pathname,
-      page_title: document.title,
-      ...params,
-    };
+  (function () {
+    const COMMERCIAL_EVENTS = new Set([
+      'phone_click',
+      'email_click',
+      'contact_form_attempt',
+      'work_with_us_click',
+    ]);
 
-    if (typeof window.gtag === "function") {
-      window.gtag("event", eventName, payload);
+    const NAVIGATION_DELAY_MS = 175;
+
+    function cleanPayload(params) {
+      return Object.fromEntries(
+        Object.entries(params).filter(([, value]) => value !== undefined && value !== null && value !== '')
+      );
     }
 
-    if (typeof window.clarity === "function") {
-      window.clarity("event", eventName);
+    function getDefaultPayload() {
+      return {
+        page_location: window.location.href,
+        page_path: window.location.pathname,
+        page_title: document.title,
+        site_brand: 'QUAVAR Facility Services',
+      };
     }
-  };
+
+    function getLinkEventName(link) {
+      const explicitEvent = link.dataset.quavarEvent;
+
+      if (explicitEvent) {
+        return explicitEvent;
+      }
+
+      const href = link.getAttribute('href') || '';
+
+      if (href.startsWith('tel:')) {
+        return 'phone_click';
+      }
+
+      if (href.startsWith('mailto:')) {
+        return 'email_click';
+      }
+
+      return null;
+    }
+
+    function getLinkPayload(link, eventName) {
+      return cleanPayload({
+        link_text: link.dataset.quavarLabel || link.textContent.trim(),
+        link_url: link.getAttribute('href'),
+        event_context: link.dataset.quavarContext,
+        event_category: 'commercial_engagement',
+        event_label: link.dataset.quavarLabel || link.textContent.trim(),
+        outbound_method: eventName === 'phone_click' ? 'phone' : eventName === 'email_click' ? 'email' : undefined,
+      });
+    }
+
+    function getFormPayload(form) {
+      return cleanPayload({
+        form_name: form.dataset.quavarFormName || form.getAttribute('name') || 'contact_form',
+        form_action: form.dataset.quavarFormAction || 'mailto',
+        form_destination: form.getAttribute('action'),
+        event_context: form.dataset.quavarContext || 'contact_page',
+        event_category: 'commercial_engagement',
+        event_label: form.dataset.quavarFormName || 'contact_form',
+      });
+    }
+
+    function trackQuavarEvent(eventName, params, options) {
+      const eventOptions = options || {};
+      const payload = cleanPayload({
+        ...getDefaultPayload(),
+        ...(params || {}),
+        debug_mode: eventOptions.debug === true ? true : undefined,
+        transport_type: 'beacon',
+      });
+
+      let callbackCompleted = false;
+
+      const complete = function () {
+        if (callbackCompleted) return;
+        callbackCompleted = true;
+
+        if (typeof eventOptions.callback === 'function') {
+          eventOptions.callback();
+        }
+      };
+
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', eventName, {
+          ...payload,
+          event_callback: complete,
+          event_timeout: 700,
+        });
+      }
+
+      if (typeof window.clarity === 'function') {
+        window.clarity('event', eventName);
+      }
+
+      window.setTimeout(complete, eventOptions.timeout || NAVIGATION_DELAY_MS);
+
+      return payload;
+    }
+
+    window.trackQuavarEvent = trackQuavarEvent;
+
+    document.addEventListener(
+      'click',
+      function (event) {
+        const link = event.target.closest('a[href]');
+
+        if (!link) return;
+
+        const eventName = getLinkEventName(link);
+
+        if (!eventName || !COMMERCIAL_EVENTS.has(eventName)) return;
+
+        const href = link.getAttribute('href');
+        const isMailOrPhone = href.startsWith('mailto:') || href.startsWith('tel:');
+
+        if (!isMailOrPhone) {
+          trackQuavarEvent(eventName, getLinkPayload(link, eventName));
+          return;
+        }
+
+        event.preventDefault();
+
+        trackQuavarEvent(eventName, getLinkPayload(link, eventName), {
+          callback: function () {
+            window.location.href = href;
+          },
+        });
+      },
+      true
+    );
+
+    document.addEventListener(
+      'submit',
+      function (event) {
+        const form = event.target;
+
+        if (!(form instanceof HTMLFormElement)) return;
+        if (form.dataset.quavarTrackedSubmit === 'true') return;
+
+        const eventName = form.dataset.quavarEvent;
+
+        if (!eventName || !COMMERCIAL_EVENTS.has(eventName)) return;
+
+        if (typeof form.reportValidity === 'function' && !form.reportValidity()) {
+          event.preventDefault();
+          return;
+        }
+
+        event.preventDefault();
+
+        trackQuavarEvent(eventName, getFormPayload(form), {
+          callback: function () {
+            form.dataset.quavarTrackedSubmit = 'true';
+            form.submit();
+          },
+        });
+      },
+      true
+    );
+  })();
 </script>

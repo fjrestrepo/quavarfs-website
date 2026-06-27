@@ -110,8 +110,8 @@ const serviceAreas = [
             Speak with QUAVAR about your facility, operating priorities and the service standards required to support a professional environment.
           </p>
           <div class="contact-hero__actions" aria-label="Primary contact actions">
-            <a class="button button-primary" href="mailto:info@quavarfs.com" onclick="window.trackQuavarEvent?.('email_click', { link_text: 'Start a Conversation', link_url: 'mailto:info@quavarfs.com', event_context: 'contact_hero' })">Start a Conversation</a>
-            <a class="button button-secondary" href="tel:+18136007422" onclick="window.trackQuavarEvent?.('phone_click', { link_text: 'Call QUAVAR', link_url: 'tel:+18136007422', event_context: 'contact_hero' })">Call QUAVAR</a>
+            <a class="button button-primary" href="mailto:info@quavarfs.com" data-quavar-event="email_click" data-quavar-label="Start a Conversation" data-quavar-context="contact_hero">Start a Conversation</a>
+            <a class="button button-secondary" href="tel:+18136007422" data-quavar-event="phone_click" data-quavar-label="Call QUAVAR" data-quavar-context="contact_hero">Call QUAVAR</a>
           </div>
         </div>
 
@@ -123,7 +123,7 @@ const serviceAreas = [
             Suite 300<br />
             Tampa, Florida 33637
           </address>
-          <a href="mailto:info@quavarfs.com" onclick="window.trackQuavarEvent?.('email_click', { link_text: 'info@quavarfs.com', link_url: 'mailto:info@quavarfs.com', event_context: 'form_intro' })">info@quavarfs.com</a>
+          <a href="mailto:info@quavarfs.com" data-quavar-event="email_click" data-quavar-label="info@quavarfs.com" data-quavar-context="form_intro">info@quavarfs.com</a>
         </aside>
       </div>
     </section>
@@ -235,11 +235,11 @@ const serviceAreas = [
 
           <div class="form-note" aria-label="Direct contact option">
             <span>Prefer direct email?</span>
-            <a href="mailto:info@quavarfs.com" onclick="window.trackQuavarEvent?.('email_click', { link_text: 'info@quavarfs.com', link_url: 'mailto:info@quavarfs.com', event_context: 'form_intro' })">info@quavarfs.com</a>
+            <a href="mailto:info@quavarfs.com" data-quavar-event="email_click" data-quavar-label="info@quavarfs.com" data-quavar-context="form_intro">info@quavarfs.com</a>
           </div>
         </div>
 
-        <form class="contact-form" action="mailto:info@quavarfs.com" method="post" enctype="text/plain" onsubmit="window.trackQuavarEvent?.('contact_form_attempt', { form_name: 'contact_form', form_action: 'mailto', event_context: 'contact_page' })">
+        <form class="contact-form" action="mailto:info@quavarfs.com" method="post" enctype="text/plain" data-quavar-event="contact_form_attempt" data-quavar-form-name="contact_form" data-quavar-form-action="mailto" data-quavar-context="contact_page">
           <div class="field-row">
             <label>
               <span>Name</span>
@@ -279,8 +279,8 @@ const serviceAreas = [
           </label>
 
           <div class="form-footer">
-            <button type="submit" onclick="window.trackQuavarEvent?.('contact_form_attempt', { form_name: 'contact_form', form_action: 'mailto', event_context: 'contact_form_button' })">Send Message</button>
-            <a href="mailto:info@quavarfs.com" onclick="window.trackQuavarEvent?.('email_click', { link_text: 'Email directly instead', link_url: 'mailto:info@quavarfs.com', event_context: 'contact_form_footer' })">Email directly instead</a>
+            <button type="submit">Send Message</button>
+            <a href="mailto:info@quavarfs.com" data-quavar-event="email_click" data-quavar-label="Email directly instead" data-quavar-context="contact_form_footer">Email directly instead</a>
           </div>
         </form>
       </div>
@@ -333,8 +333,8 @@ const serviceAreas = [
             At QUAVAR, outstanding facilities begin with outstanding people. We are interested in connecting with professionals who share our commitment to quality, reliability and service excellence across professional environments.
           </p>
           <div class="work-with-us__actions">
-            <a class="button button-primary" href="mailto:info@quavarfs.com?subject=Work%20With%20QUAVAR" onclick="window.trackQuavarEvent?.('work_with_us_click', { link_text: 'Submit Your Information', link_url: 'mailto:info@quavarfs.com?subject=Work%20With%20QUAVAR', event_context: 'work_with_us_primary' })">Submit Your Information</a>
-            <a class="button button-secondary" href="mailto:info@quavarfs.com?subject=Work%20With%20QUAVAR" onclick="window.trackQuavarEvent?.('work_with_us_click', { link_text: 'Email QUAVAR', link_url: 'mailto:info@quavarfs.com?subject=Work%20With%20QUAVAR', event_context: 'work_with_us_secondary' })">Email QUAVAR</a>
+            <a class="button button-primary" href="mailto:info@quavarfs.com?subject=Work%20With%20QUAVAR" data-quavar-event="work_with_us_click" data-quavar-label="Submit Your Information" data-quavar-context="work_with_us_primary">Submit Your Information</a>
+            <a class="button button-secondary" href="mailto:info@quavarfs.com?subject=Work%20With%20QUAVAR" data-quavar-event="work_with_us_click" data-quavar-label="Email QUAVAR" data-quavar-context="work_with_us_secondary">Email QUAVAR</a>
           </div>
         </div>
 
