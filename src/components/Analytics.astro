@@ -6,18 +6,13 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
 {
   gaId && (
     <>
-      <script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-      ></script>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
 
-      <script define:vars={{ gaId }}>
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', gaId);
-        `}
+      <script define:vars={{ gaId }} is:inline>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', gaId);
       </script>
     </>
   )
@@ -25,22 +20,20 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
 
 {
   clarityId && (
-    <script define:vars={{ clarityId }}>
-      {`
-        (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);
-          t.async=1;
-          t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];
-          y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", clarityId);
-      `}
+    <script define:vars={{ clarityId }} is:inline>
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);
+        t.async=1;
+        t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", clarityId);
     </script>
   )
 }
 
-<script>
+<script is:inline>
   function trackQuavarEvent(eventName, params = {}) {
     const payload = {
       page_path: window.location.pathname,
@@ -63,11 +56,13 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
 
     const href = link.getAttribute("href") || "";
     const linkText = link.textContent.trim().replace(/\s+/g, " ").slice(0, 100);
+    const lowerHref = href.toLowerCase();
+
     const isWorkWithUs =
       link.closest("#work-with-us") ||
-      href.toLowerCase().includes("work%20with%20quavar") ||
-      href.toLowerCase().includes("career") ||
-      href.toLowerCase().includes("resume");
+      lowerHref.includes("work%20with%20quavar") ||
+      lowerHref.includes("career") ||
+      lowerHref.includes("resume");
 
     if (href.startsWith("tel:")) {
       trackQuavarEvent("phone_click", {
