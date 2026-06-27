@@ -10,9 +10,9 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
 
       <script define:vars={{ gaId }} is:inline>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){window.dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', gaId);
+        window.gtag = window.gtag || function gtag(){window.dataLayer.push(arguments);};
+        window.gtag('js', new Date());
+        window.gtag('config', gaId);
       </script>
     </>
   )
@@ -34,7 +34,7 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
 }
 
 <script is:inline>
-  function trackQuavarEvent(eventName, params = {}) {
+  window.trackQuavarEvent = function trackQuavarEvent(eventName, params = {}) {
     const payload = {
       page_path: window.location.pathname,
       page_title: document.title,
@@ -48,48 +48,5 @@ const clarityId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
     if (typeof window.clarity === "function") {
       window.clarity("event", eventName);
     }
-  }
-
-  document.addEventListener("click", (event) => {
-    const link = event.target.closest("a");
-    if (!link) return;
-
-    const href = link.getAttribute("href") || "";
-    const linkText = link.textContent.trim().replace(/\s+/g, " ").slice(0, 100);
-    const lowerHref = href.toLowerCase();
-
-    const isWorkWithUs =
-      link.closest("#work-with-us") ||
-      lowerHref.includes("work%20with%20quavar") ||
-      lowerHref.includes("career") ||
-      lowerHref.includes("resume");
-
-    if (href.startsWith("tel:")) {
-      trackQuavarEvent("phone_click", {
-        link_text: linkText,
-        link_url: href,
-      });
-    }
-
-    if (href.startsWith("mailto:")) {
-      trackQuavarEvent(isWorkWithUs ? "work_with_us_click" : "email_click", {
-        link_text: linkText,
-        link_url: href,
-      });
-    }
-  });
-
-  document.addEventListener("submit", (event) => {
-    const form = event.target;
-    if (!(form instanceof HTMLFormElement)) return;
-
-    const action = form.getAttribute("action") || "";
-
-    if (action.startsWith("mailto:")) {
-      trackQuavarEvent("contact_form_attempt", {
-        form_name: "contact_form",
-        form_action: "mailto",
-      });
-    }
-  });
+  };
 </script>
